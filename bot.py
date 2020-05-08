@@ -1,7 +1,7 @@
 import discord
 import random
 import requests
-from botkey import flub_token
+from botkey import *
 
 client = discord.Client()
 
@@ -18,23 +18,7 @@ async def on_message(message):
 	if message.content.startswith('$flube'):
 		try:
 			if (message.attachments[0].id > 0):
-				url = message.attachments[0].url
-				print('Dreaming...')
-				for y in range(10):
-					r = requests.post(
-						"https://api.deepai.org/api/deepdream",
-						data={
-							'image': url,
-						},
-						headers={'api-key': '7601155e-d226-446d-861b-d5010ae93638'}
-					)
-					responce = str(r.json())
-					x = responce.find('output_url')
-					url = ''
-					for i in range(x + 14, len(responce) - 2):
-						url += responce[i]
-				await message.channel.send(url)
-				await message.channel.send('FℲ... L˥... U∩... Bq...')
+				dreamer(10)
 			else:
 				await message.channel.send('FLUB... Error... Fluuuub... Try again but with the command as a caption to a photo Fluuuuuuuuuuuuuuuuuuuubbbb!!!')
 		except IndexError:
@@ -42,24 +26,7 @@ async def on_message(message):
 
 	try:
 		if(message.attachments[0].id > 0) and num > 95:
-			print('dreaming...\n')
-			url = message.attachments[0].url
-			for x in range(4):
-				r = requests.post(
-					"https://api.deepai.org/api/deepdream",
-					data={
-						'image':url,
-					},
-					headers={'api-key':'7601155e-d226-446d-861b-d5010ae93638'}
-				)
-				responce = str(r.json())
-				x = responce.find('output_url')
-				url = ''
-				for i in range(x+14,len(responce)-2):
-					url += responce[i]
-			await message.channel.send(url)
-			await message.channel.send('FℲ... L˥... U∩... Bq...')
-			return
+			dreamer(4)
 	except IndexError:
 		pass
 	if num >= 90:
@@ -95,6 +62,19 @@ async def on_message(message):
 		else:
 			msg = 'F... L... U... B...'
 		await message.channel.send(msg)
-
+      
+def dreamer(num):
+    print('dreaming...\n')
+    url = message.attachments[0].url
+    for x in range(num):
+        r = requests.post("https://api.deepai.org/api/deepdream",data={'image':url,},headers={'api-key':API_Key})
+        responce = str(r.json())
+        x = responce.find('output_url')
+        url = ''
+        for i in range(x+14,len(responce)-2):
+            url += responce[i]
+        await message.channel.send(url)
+        await message.channel.send('FℲ... L˥... U∩... Bq...')
+        return
 client.run(flub_token)
 
