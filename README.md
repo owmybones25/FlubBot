@@ -1,5 +1,8 @@
 # FlubBot
 This is the code of Flub bot - A Discord bot I am working on for the Offical Flub Discord Server: https://discord.gg/W9XWFGs
+This code requires a py file called botkey which contains two varibles, a discord bot token called 'bot_token' which can be generated from
+https://discord.com/developers/ , and an API key to the deep Dream api, called 'API_Key' which can be generated from https://deepai.org/
+
 Current Features:
 ``````````````````````````````````````````````````````````````````````````````````````
 Flub bot has a 10% chance to reply to a message sent in a discord server.
